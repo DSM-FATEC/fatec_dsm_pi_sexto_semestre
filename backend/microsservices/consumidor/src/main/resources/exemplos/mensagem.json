@@ -1,0 +1,1 @@
+{ "artefato": { "id": "1c6a31d1-9255-4dfa-80da-cb7a5b983c1a", "id_tipo": "1c6a31d1-9255-4dfa-80da-cb7a5b983c1a", "id_entidade": "1c6a31d1-9255-4dfa-80da-cb7a5b983c1a", "descricao": "semaforo", "ativo": true, "comportamentos": { "a": "b" }, "criado_em": "2023-03-10T19:34:00Z" }, "corpo": { "mensagem": "teste" } }
