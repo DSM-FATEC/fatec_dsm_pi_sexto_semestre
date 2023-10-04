@@ -1,0 +1,9 @@
+FROM eclipse-temurin:17-alpine
+
+WORKDIR /app
+
+COPY consumidor .
+
+RUN gradle clean :consumidor:bootJar
+
+ENTRYPOINT ["java", "-jar", "build/libs/consumidor-0.0.1-SNAPSHOT.jar"]

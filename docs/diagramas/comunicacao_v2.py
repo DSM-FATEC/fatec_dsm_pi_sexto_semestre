@@ -2,11 +2,8 @@ import diagrams as d
 import diagrams.programming.language as pl
 import diagrams.programming.framework as pf
 import diagrams.onprem.queue as oq
-import diagrams.onprem.database as od
 import diagrams.gcp.database as gd
-import diagrams.gcp.analytics as ga
 import diagrams.gcp.compute as gc
-import diagrams.firebase.develop as fd
 import diagrams.firebase.base as fb
 
 
@@ -14,15 +11,16 @@ with d.Diagram('Comunicação entre serviços - Linguagens',
                 filename='comunicação_entre_serviços_v2',
                 graph_attr={'margin': '-1.5, -1.5'},
                 show=False):
-    api = pf.FastAPI('API CRUDs')
-    consumer = pl.Python('Consumidor de mensagens')
+    api = pf.Spring('API CRUDs')
+    consumer = pf.Spring('Consumidor de mensagens')
+    web = pl.Javascript('Painel de Admin - Web')
+
     bd = gd.Firestore('BD de CRUDs')
     bd_eventos = gd.Firestore('BD de eventos')
     artefato = pl.Python('Artefato')
     rabbitmq = oq.RabbitMQ('Mensageria')
     aplicativo = pf.Flutter('Aplicativo')
     desktop = pf.Flutter('Desktop')
-    web = pl.Javascript('Web')
 
     api >>  d.Edge(reverse=True) >> [artefato, desktop, bd]
     api >> d.Edge(reverse=True) >> aplicativo
@@ -35,14 +33,16 @@ with d.Diagram('Comunicação entre serviços - Infraestrutura',
                 graph_attr={'margin': '-1.5, -1.5'},
                 show=False):
     api = gc.Run('API CRUDs')
-    consumer = gc.Run('Consumidor de mensagens')
+    consumer = gc.Run('Consumidor')
+    web = gc.Run('Painel de Admin - Web')
+
     bd = gd.Firestore('BD de CRUDs')
-    bd_eventos = fd.Firestore('BD de eventos')
+    bd_eventos = gd.Firestore('BD de eventos')
+
     artefato = pl.Python('Artefato')
     rabbitmq = oq.RabbitMQ('Mensageria')
-    aplicativo = fb.Firebase('Aplicativo')
+    aplicativo = pf.Flutter('Aplicativo')
     desktop = pf.Flutter('Desktop')
-    web = gc.Run('Web')
 
     api >>  d.Edge(reverse=True) >> [artefato, desktop, bd]
     api >> d.Edge(reverse=True) >> aplicativo
