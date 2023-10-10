@@ -1,0 +1,3 @@
+firestore:
+  collection: ${FIRESTORE_COLLECTION:eventos}
+  project: ${FIRESTORE_PROJECT:guiame-mobile}
