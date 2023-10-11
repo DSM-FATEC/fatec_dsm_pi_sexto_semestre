@@ -2,6 +2,7 @@ import diagrams as d
 import diagrams.programming.language as pl
 import diagrams.programming.framework as pf
 import diagrams.onprem.queue as oq
+import diagrams.onprem.database as od
 import diagrams.gcp.database as gd
 import diagrams.gcp.compute as gc
 import diagrams.firebase.base as fb
@@ -15,7 +16,7 @@ with d.Diagram('Comunicação entre serviços - Linguagens',
     consumer = pf.Spring('Consumidor de mensagens')
     web = pl.Javascript('Painel de Admin - Web')
 
-    bd = gd.Firestore('BD de CRUDs')
+    bd = od.PostgreSQL('BD de CRUDs')
     bd_eventos = gd.Firestore('BD de eventos')
     artefato = pl.Python('Artefato')
     rabbitmq = oq.RabbitMQ('Mensageria')
@@ -36,7 +37,7 @@ with d.Diagram('Comunicação entre serviços - Infraestrutura',
     consumer = gc.Run('Consumidor')
     web = gc.Run('Painel de Admin - Web')
 
-    bd = gd.Firestore('BD de CRUDs')
+    bd = gd.SQL('BD de CRUDs')
     bd_eventos = gd.Firestore('BD de eventos')
 
     artefato = pl.Python('Artefato')
