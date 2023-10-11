@@ -10,3 +10,4 @@
 rootProject.name = 'guiame-mobile-microsservices'
 
 include ':consumidor'
+include ':apicruds'
