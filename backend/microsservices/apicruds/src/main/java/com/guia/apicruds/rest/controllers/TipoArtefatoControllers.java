@@ -1,8 +1,8 @@
-package com.guia.apicruds.controllers;
+package com.guia.apicruds.rest.controllers;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,32 +15,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guia.apicruds.models.TipoArtefato;
-import com.guia.apicruds.repositories.TipoArtefatoRepository;
+import com.guia.apicruds.domain.tipo_artefato.entities.TipoArtefato;
+import com.guia.apicruds.domain.tipo_artefato.repositories.TipoArtefatoRepository;
 
 @RestController
 @RequestMapping("/api/tipo_artefato")
 public class TipoArtefatoControllers {
     @Autowired
     public TipoArtefatoRepository repository;
+
     @PostMapping
     public ResponseEntity<TipoArtefato> criar(
-        @RequestBody TipoArtefato artefato
-    ){
+            @RequestBody TipoArtefato artefato) {
         artefato.setId(null);
+        artefato.setCriadoEm(Instant.now());
+        artefato.setAtualizadoEm(Instant.now());
+
         TipoArtefato novoArtefato = this.repository.save(artefato);
+
         return ResponseEntity.ok(novoArtefato);
     }
 
     @GetMapping
     public ResponseEntity<List<TipoArtefato>> findAllArtefato() {
         List<TipoArtefato> artefato = this.repository.findAll();
+
         return ResponseEntity.ok(artefato);
     }
 
     @GetMapping("/{tipoArtefatoId}")
-    public ResponseEntity<TipoArtefato> findArtefatoById(@PathVariable UUID TipoArtefatoId) {
-        Optional<TipoArtefato> maybeTipoArtefato = this.repository.findById(null);
+    public ResponseEntity<TipoArtefato> findArtefatoById(@PathVariable Integer tipoArtefatoId) {
+        Optional<TipoArtefato> maybeTipoArtefato = this.repository.findById(tipoArtefatoId);
 
         if (maybeTipoArtefato.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -50,7 +55,8 @@ public class TipoArtefatoControllers {
     }
 
     @PutMapping("/{tipoArtefatoId}")
-    public ResponseEntity<TipoArtefato> updateTipoArtefatoById(@PathVariable UUID tipoArtefatoId,
+    public ResponseEntity<TipoArtefato> updateTipoArtefatoById(
+            @PathVariable Integer tipoArtefatoId,
             @RequestBody TipoArtefato tipoArtefatoBody) {
         boolean tipoArtefatoExists = this.repository.existsById(null);
 
@@ -58,7 +64,8 @@ public class TipoArtefatoControllers {
             return ResponseEntity.notFound().build();
         }
 
-        tipoArtefatoBody.setId(null);
+        tipoArtefatoBody.setId(tipoArtefatoId);
+        tipoArtefatoBody.setAtualizadoEm(Instant.now());
 
         TipoArtefato updatedTipoArtefato = this.repository.save(tipoArtefatoBody);
 
@@ -66,14 +73,14 @@ public class TipoArtefatoControllers {
     }
 
     @DeleteMapping("/{tipoArtefatoId}")
-    public ResponseEntity<?> deleteTipoArtefatoById(@PathVariable UUID tipoArtefatoId) {
-        boolean tipoArtefatoExists = this.repository.existsById(null);
+    public ResponseEntity<?> deleteTipoArtefatoById(@PathVariable Integer tipoArtefatoId) {
+        boolean tipoArtefatoExists = this.repository.existsById(tipoArtefatoId);
 
         if (!tipoArtefatoExists) {
             return ResponseEntity.notFound().build();
         }
 
-        this.repository.deleteById(null);
+        this.repository.deleteById(tipoArtefatoId);
 
         return ResponseEntity.noContent().build();
     }

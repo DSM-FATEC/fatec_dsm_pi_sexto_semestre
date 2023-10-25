@@ -1,4 +1,4 @@
-package com.guia.apicruds.models;
+package com.guia.apicruds.domain.tipo_artefato.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

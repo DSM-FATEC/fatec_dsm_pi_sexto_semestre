@@ -1,10 +1,14 @@
 package com.guiame.consumidor.beans;
 
+import java.util.Objects;
+import java.io.InputStream;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.google.auth.oauth2.GoogleCredentials;
+import com.google.auth.Credentials;
+import com.google.auth.oauth2.ServiceAccountCredentials;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.FirestoreOptions;
 
@@ -15,12 +19,24 @@ public class FirestoreDbConfig {
 
     @Bean
     public Firestore defaultFirestore() throws Exception {
-        FirestoreOptions options = FirestoreOptions.getDefaultInstance()
-            .toBuilder()
-            .setProjectId(this.firestoreProjectId)
-            .setCredentials(GoogleCredentials.getApplicationDefault())
-            .build();
+        // Lê o arquivo firestore-sa.json dentro da pasta src/main/resources/config
+        try (InputStream serviceAccount = this.getClass().getClassLoader()
+                .getResourceAsStream("config/firestore-sa.json")) {
+            if (Objects.isNull(serviceAccount)) {
+                throw new IllegalArgumentException("Arquivo config/firestore.json não encontrado!");
+            }
 
-        return options.getService();
+            // Cria uma credencial a partir da leitura da service account aberta
+            // anteriormente
+            Credentials serviceAccountCredentials = ServiceAccountCredentials.fromStream(serviceAccount);
+
+            FirestoreOptions options = FirestoreOptions.getDefaultInstance()
+                    .toBuilder()
+                    .setProjectId(this.firestoreProjectId)
+                    .setCredentials(serviceAccountCredentials)
+                    .build();
+
+            return options.getService();
+        }
     }
 }
