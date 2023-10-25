@@ -23,7 +23,7 @@ public class FirestoreDbConfig {
         try (InputStream serviceAccount = this.getClass().getClassLoader()
                 .getResourceAsStream("config/firestore-sa.json")) {
             if (Objects.isNull(serviceAccount)) {
-                throw new IllegalArgumentException("Arquivo config/firestore.json não encontrado!");
+                throw new IllegalArgumentException("Arquivo config/firestore-sa.json não encontrado!");
             }
 
             // Cria uma credencial a partir da leitura da service account aberta
