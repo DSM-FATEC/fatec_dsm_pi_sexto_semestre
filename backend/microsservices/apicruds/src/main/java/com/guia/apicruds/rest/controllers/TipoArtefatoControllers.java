@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guia.apicruds.domain.tipo_artefato.entities.TipoArtefato;
 import com.guia.apicruds.domain.tipo_artefato.repositories.TipoArtefatoRepository;
+import com.guia.apicruds.domain.tipo_artefato.entities.TipoArtefato;
 
 @RestController
 @RequestMapping("/api/tipo_artefato")
