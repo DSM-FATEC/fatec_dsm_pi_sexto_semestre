@@ -21,24 +21,24 @@ public class EntidadeController {
     }
 
     @GetMapping("/")
-    public List<EntidadeInputModel> listar() {
+    public List<Entidade> listar() {
         return entidadeService.listar();
     }
 
     @GetMapping("/{id}")
-    public EntidadeInputModel obter(@PathVariable Long id) {
+    public Entidade obter(@PathVariable Long id) {
         return entidadeService.buscarPorId(id);
     }
 
     @PostMapping("/")
-    public ResponseEntity<EntidadeInputModel> criar(@RequestBody EntidadeInputModel inputModel) {
-        EntidadeInputModel entidadeCriada = entidadeService.criarEntidade(inputModel);
+    public ResponseEntity<Entidade> criar(@RequestBody EntidadeInputModel inputModel) {
+        Entidade entidadeCriada = entidadeService.criarEntidade(inputModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeCriada);
     }
-
+    
     @PutMapping("/{id}")
-    public ResponseEntity<EntidadeInputModel> atualizarEntidade(@PathVariable Long id, @RequestBody EntidadeInputModel inputModel) {
-        EntidadeInputModel entidadeAtualizada = entidadeService.atualizarEntidade(id, inputModel);
+    public ResponseEntity<Entidade> atualizarEntidade(@PathVariable Long id, @RequestBody EntidadeInputModel inputModel) {
+        Entidade entidadeAtualizada = entidadeService.atualizarEntidade(id, inputModel);
         return ResponseEntity.ok(entidadeAtualizada);
     }
 

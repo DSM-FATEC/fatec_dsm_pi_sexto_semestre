@@ -22,27 +22,23 @@ public class EntidadeService {
         this.entidadeRepository = entidadeRepository;
     }
 
-    public List<EntidadeInputModel> listar() {
+    public List<Entidade> listar() {
         List<Entidade> entidades = entidadeRepository.findAll();
 
-        List<EntidadeInputModel> entidadeInputModels = entidades.stream()
-                .map(EntidadeInputModel::toObj)
-                .collect(Collectors.toList());
-
-        return entidadeInputModels;
+        return entidades;
     }
 
-    public EntidadeInputModel buscarPorId(Long id) {
+    public Entidade buscarPorId(Long id) {
         Optional<Entidade> entidadeOptional = entidadeRepository.findById(id);
-        if (entidadeOptional.isPresent()) {
-            Entidade entidadeEncontrada = entidadeOptional.get();
-            return EntidadeInputModel.toObj(entidadeEncontrada);
-        } else {
+        if (!entidadeOptional.isPresent()) {
             throw new EntidadeNaoEncontradaException("Entidade com ID " + id + " não encontrada");
         }
+        
+        Entidade entidadeEncontrada = entidadeOptional.get();
+        return entidadeEncontrada;
     }
 
-    public EntidadeInputModel criarEntidade(EntidadeInputModel inputModel) {
+    public Entidade criarEntidade(EntidadeInputModel inputModel) {
         Entidade novaEntidade = new Entidade(
                 null,
                 inputModel.getTipo(),
@@ -59,10 +55,10 @@ public class EntidadeService {
 
         Entidade entidadeSalva = entidadeRepository.save(novaEntidade);
 
-        return EntidadeInputModel.toObj(entidadeSalva);
+        return entidadeSalva;
     }
 
-    public EntidadeInputModel atualizarEntidade(Long id, EntidadeInputModel inputModel) {
+    public Entidade atualizarEntidade(Long id, EntidadeInputModel inputModel) {
         Optional<Entidade> entidadeOptional = entidadeRepository.findById(id);
         if (entidadeOptional.isPresent()) {
             Entidade entidade = entidadeOptional.get();
@@ -78,9 +74,7 @@ public class EntidadeService {
 
             entidade.setAtualizadoEm(LocalDate.now());
 
-            Entidade entidadeAtualizada = entidadeRepository.save(entidade);
-
-            return EntidadeInputModel.toObj(entidadeAtualizada);
+            return entidadeRepository.save(entidade);
         } else {
             throw new EntidadeNaoEncontradaException("Entidade com ID " + id + " não encontrada");
         }
