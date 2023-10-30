@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
+import com.guia.apicruds.domain.tipo_entidade.entities.TipoEntidade;
+
 @Data
 @AllArgsConstructor
 @Entity
@@ -13,9 +15,6 @@ public class Entidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
-    private Long tipo;
 
     @Column(nullable = false)
     private String descricao;
@@ -43,4 +42,8 @@ public class Entidade {
 
     @Column(nullable = false)
     private LocalDate atualizadoEm;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipo")
+    private TipoEntidade tipo;
 }
