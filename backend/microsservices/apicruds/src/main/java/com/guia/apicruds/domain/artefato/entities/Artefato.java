@@ -21,6 +21,7 @@ public class Artefato {
     private Integer id;
     private Boolean ativo;
     private String descricao;
+    private String wifi;
     private Instant criadoEm;
     private Instant atualizadoEm;
 

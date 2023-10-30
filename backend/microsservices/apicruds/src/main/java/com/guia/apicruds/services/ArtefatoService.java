@@ -30,10 +30,10 @@ public class ArtefatoService {
         artefato.setCriadoEm(Instant.now());
         artefato.setAtualizadoEm(Instant.now());
 
-        Optional<TipoArtefato> tipoArtefato = this.tipoArtefatoRepository.findById(inputModel.getIdTipo());
+        Optional<TipoArtefato> tipoArtefato = this.tipoArtefatoRepository.findById(inputModel.getTipoId());
 
         if (tipoArtefato.isEmpty()) {
-            throw new TipoArtefatoNaoEncontradoException(inputModel.getIdTipo());
+            throw new TipoArtefatoNaoEncontradoException(inputModel.getTipoId());
         }
 
         artefato.setTipo(tipoArtefato.get());
@@ -48,9 +48,9 @@ public class ArtefatoService {
             throw new ArtefatoNaoEncontradoException(id);
         }
 
-        Optional<TipoArtefato> tipoArtefato = this.tipoArtefatoRepository.findById(inputModel.getIdTipo());
+        Optional<TipoArtefato> tipoArtefato = this.tipoArtefatoRepository.findById(inputModel.getTipoId());
         if (tipoArtefato.isEmpty()) {
-            throw new TipoArtefatoNaoEncontradoException(inputModel.getIdTipo());
+            throw new TipoArtefatoNaoEncontradoException(inputModel.getTipoId());
         }
 
         artefato.get().setAtivo(inputModel.getAtivo());

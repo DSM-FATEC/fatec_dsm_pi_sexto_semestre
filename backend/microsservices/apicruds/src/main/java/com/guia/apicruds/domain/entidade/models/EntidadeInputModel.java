@@ -1,13 +1,12 @@
 package com.guia.apicruds.domain.entidade.models;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.guia.apicruds.domain.entidade.entities.Entidade;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -59,9 +58,9 @@ public class EntidadeInputModel {
 
     public static EntidadeInputModel toObj(Entidade entidade) {
         EntidadeInputModel entidadeInputModel = new EntidadeInputModel();
-    
+
         entidadeInputModel.setId(entidade.getId());
-        entidadeInputModel.setTipo(entidade.getTipo());
+        entidadeInputModel.setTipo(entidade.getTipo().getId());
         entidadeInputModel.setDescricao(entidade.getDescricao());
         entidadeInputModel.setCep(entidade.getCep());
         entidadeInputModel.setComplemento(entidade.getComplemento());

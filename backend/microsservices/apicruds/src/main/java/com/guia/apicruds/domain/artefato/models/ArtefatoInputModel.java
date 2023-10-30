@@ -6,5 +6,6 @@ import lombok.Data;
 public class ArtefatoInputModel {
     private Boolean ativo;
     private String descricao;
-    private Integer idTipo;
+    private String wifi;
+    private Integer tipoId;
 }

@@ -6,6 +6,7 @@ import com.guia.apicruds.domain.tipo_entidade.repositories.TipoEntidadeRepositor
 import com.guia.apicruds.exceptions.TipoEntidadeNaoEncontradaException;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -67,6 +68,6 @@ public class TipoEntidadeService {
             tipoEntidadeRepository.deleteById(id);
         } else {
             throw new TipoEntidadeNaoEncontradaException("Tipo de entidade com ID " + id + " não encontrada");
-        }                                                                                           
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.guia.apicruds.rest.controllers;
 
+import com.guia.apicruds.domain.entidade.entities.Entidade;
 import com.guia.apicruds.domain.entidade.models.EntidadeInputModel;
 import com.guia.apicruds.services.EntidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/entidades")
 public class EntidadeController {
-    
+
     private EntidadeService entidadeService;
 
     @Autowired
@@ -35,7 +36,7 @@ public class EntidadeController {
         Entidade entidadeCriada = entidadeService.criarEntidade(inputModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeCriada);
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<Entidade> atualizarEntidade(@PathVariable Long id, @RequestBody EntidadeInputModel inputModel) {
         Entidade entidadeAtualizada = entidadeService.atualizarEntidade(id, inputModel);

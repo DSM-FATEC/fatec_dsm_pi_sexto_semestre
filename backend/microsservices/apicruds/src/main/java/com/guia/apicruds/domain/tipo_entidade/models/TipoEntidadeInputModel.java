@@ -1,11 +1,9 @@
 package com.guia.apicruds.domain.tipo_entidade.models;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
