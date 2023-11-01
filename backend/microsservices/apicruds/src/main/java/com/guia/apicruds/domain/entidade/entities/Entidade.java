@@ -3,7 +3,8 @@ package com.guia.apicruds.domain.entidade.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
-import java.time.LocalDate;
+
+import java.time.Instant;
 
 import com.guia.apicruds.domain.tipo_entidade.entities.TipoEntidade;
 
@@ -38,10 +39,10 @@ public class Entidade {
     private String estado;
 
     @Column(nullable = false)
-    private LocalDate criadoEm;
+    private Instant criadoEm;
 
     @Column(nullable = false)
-    private LocalDate atualizadoEm;
+    private Instant atualizadoEm;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo")

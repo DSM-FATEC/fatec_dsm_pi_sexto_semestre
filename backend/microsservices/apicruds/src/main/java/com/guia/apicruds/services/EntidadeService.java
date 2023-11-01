@@ -7,11 +7,9 @@ import com.guia.apicruds.exceptions.EntidadeNaoEncontradaException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class EntidadeService {
@@ -49,7 +47,7 @@ public class EntidadeService {
                 inputModel.getBairro(),
                 inputModel.getCidade(),
                 inputModel.getEstado(),
-                LocalDate.now(),
+                Instant.now(),
                 null
         );
 
@@ -72,7 +70,7 @@ public class EntidadeService {
             entidade.setCidade(inputModel.getCidade());
             entidade.setEstado(inputModel.getEstado());
 
-            entidade.setAtualizadoEm(LocalDate.now());
+            entidade.setAtualizadoEm(Instant.now());
 
             return entidadeRepository.save(entidade);
         } else {

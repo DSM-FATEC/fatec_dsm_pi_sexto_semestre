@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -51,26 +51,8 @@ public class EntidadeInputModel {
     private String estado;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDate criadoEm;
+    private Instant criadoEm;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDate atualizadoEm;
-
-    public static EntidadeInputModel toObj(Entidade entidade) {
-        EntidadeInputModel entidadeInputModel = new EntidadeInputModel();
-
-        entidadeInputModel.setId(entidade.getId());
-        entidadeInputModel.setTipo(entidade.getTipo().getId());
-        entidadeInputModel.setDescricao(entidade.getDescricao());
-        entidadeInputModel.setCep(entidade.getCep());
-        entidadeInputModel.setComplemento(entidade.getComplemento());
-        entidadeInputModel.setEndereco(entidade.getEndereco());
-        entidadeInputModel.setBairro(entidade.getBairro());
-        entidadeInputModel.setCidade(entidade.getCidade());
-        entidadeInputModel.setEstado(entidade.getEstado());
-        entidadeInputModel.setCriadoEm(entidade.getCriadoEm());
-        entidadeInputModel.setAtualizadoEm(entidade.getAtualizadoEm());
-
-        return entidadeInputModel;
-    }
+    private Instant atualizadoEm;
 }

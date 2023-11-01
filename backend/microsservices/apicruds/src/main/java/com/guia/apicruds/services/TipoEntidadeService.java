@@ -5,6 +5,7 @@ import com.guia.apicruds.domain.tipo_entidade.models.TipoEntidadeInputModel;
 import com.guia.apicruds.domain.tipo_entidade.repositories.TipoEntidadeRepository;
 import com.guia.apicruds.exceptions.TipoEntidadeNaoEncontradaException;
 
+import java.time.Instant;
 import java.util.Optional;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class TipoEntidadeService {
         TipoEntidade tipoEntidade = new TipoEntidade(
             null,
             inputModel.getDescricao(),
-            LocalDate.now(),
+            Instant.now(),
             null
         );
 

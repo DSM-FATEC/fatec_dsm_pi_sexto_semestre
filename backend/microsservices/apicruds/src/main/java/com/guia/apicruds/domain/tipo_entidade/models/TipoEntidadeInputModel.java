@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -21,8 +21,8 @@ public class TipoEntidadeInputModel {
     private String descricao;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDate criadoEm;
+    private Instant criadoEm;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private LocalDate atualizadoEm;
+    private Instant atualizadoEm;
 }
