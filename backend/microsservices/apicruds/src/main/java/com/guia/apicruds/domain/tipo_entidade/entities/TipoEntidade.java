@@ -3,7 +3,8 @@ package com.guia.apicruds.domain.tipo_entidade.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
-import java.time.LocalDate;
+
+import java.time.Instant;
 import java.util.Collection;
 
 import com.guia.apicruds.domain.entidade.entities.Entidade;
@@ -21,10 +22,10 @@ public class TipoEntidade {
     private String descricao;
 
     @Column(nullable = false)
-    private LocalDate criadoEm;
+    private Instant criadoEm;
 
     @Column(nullable = false)
-    private LocalDate atualizadoEm;
+    private Instant atualizadoEm;
 
     @OneToMany(mappedBy = "tipo")
     private Collection<Entidade> Entidade;
