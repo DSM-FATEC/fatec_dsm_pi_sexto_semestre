@@ -1,7 +1,6 @@
 package com.guia.apicruds.domain.entidade.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.guia.apicruds.domain.entidade.entities.Entidade;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

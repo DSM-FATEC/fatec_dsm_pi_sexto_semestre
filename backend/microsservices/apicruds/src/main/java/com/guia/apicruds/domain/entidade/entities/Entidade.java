@@ -2,6 +2,7 @@ package com.guia.apicruds.domain.entidade.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.time.Instant;
@@ -9,6 +10,7 @@ import java.time.Instant;
 import com.guia.apicruds.domain.tipo_entidade.entities.TipoEntidade;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "entidades")

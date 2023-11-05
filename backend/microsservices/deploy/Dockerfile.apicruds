@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN ./gradlew :consumidor:bootJar
+RUN ./gradlew :apicruds:bootJar
 
 # Usa steps para reduzir tamanho final da imagem, já que a imagem
 # JRE é quase 90mb menor do que a imagem JDK
@@ -12,6 +12,6 @@ FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/consumidor/build/libs/consumidor-0.0.1-SNAPSHOT.jar consumidor.jar
+COPY --from=builder /app/apicruds/build/libs/apicruds-0.0.1-SNAPSHOT.jar apicruds.jar
 
-ENTRYPOINT ["java", "-jar", "consumidor.jar"]
+ENTRYPOINT ["java", "-jar", "apicruds.jar"]

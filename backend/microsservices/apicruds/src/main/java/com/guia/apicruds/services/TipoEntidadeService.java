@@ -36,12 +36,10 @@ public class TipoEntidadeService {
     }
 
     public TipoEntidade criarTipoEntidade(TipoEntidadeInputModel inputModel) {
-        TipoEntidade tipoEntidade = new TipoEntidade(
-            null,
-            inputModel.getDescricao(),
-            Instant.now(),
-            null
-        );
+        TipoEntidade tipoEntidade = new TipoEntidade();
+        tipoEntidade.setDescricao(inputModel.getDescricao());
+        tipoEntidade.setCriadoEm(Instant.now());
+        tipoEntidade.setAtualizadoEm(Instant.now());
 
         TipoEntidade tipoEntidadeSalva = tipoEntidadeRepository.save(tipoEntidade);
 
