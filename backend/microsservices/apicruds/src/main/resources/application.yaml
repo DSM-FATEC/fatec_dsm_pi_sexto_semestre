@@ -7,14 +7,14 @@ server:
 
 hibernate:
   connection:
-    url: jdbc:postgresql://ep-misty-salad-49969234.us-east-1.aws.neon.tech/guiame-apicruds
+    url: jdbc:postgresql://localhost:5432/guiame_cruds
 
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://ep-misty-salad-49969234.us-east-1.aws.neon.tech/guiame-apicruds
-    username: ghp2201
-    password: D1ct7OsEPfIF
+    url: jdbc:postgresql://localhost:5432/guiame_cruds
+    username: guiame_cruds
+    password: guiame_cruds
 
   jpa:
     hibernate:
