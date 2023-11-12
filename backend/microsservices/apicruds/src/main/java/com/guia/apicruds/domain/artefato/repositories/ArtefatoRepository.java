@@ -7,4 +7,5 @@ import com.guia.apicruds.domain.artefato.entities.Artefato;
 
 @Repository
 public interface ArtefatoRepository extends JpaRepository<Artefato, Integer> {
+    List<Artefato> findByWifi(String wifi);
 }
