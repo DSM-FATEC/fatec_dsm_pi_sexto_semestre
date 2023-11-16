@@ -70,6 +70,10 @@ public class ArtefatoService {
         return artefato.get();
     }
 
+    public List<Artefato> obtemArtefatoPeloWifi(String wifi)  {
+        return artefatoRepository.findByWifi(wifi);
+    }
+
     public List<Artefato> obtemTodos() {
         return this.artefatoRepository.findAll();
     }

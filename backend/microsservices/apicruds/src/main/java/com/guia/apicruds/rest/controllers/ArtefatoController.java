@@ -61,6 +61,17 @@ public class ArtefatoController {
         }
     }
 
+    @GetMapping("/wifi/{wifi}")
+    public ResponseEntity<List<Artefato>> obtemPorWifi(@PathVariable String wifi) {
+        List<Artefato> artefatos = this.artefatoService.obtemArtefatoPeloWifi(wifi);
+
+        if (artefatos.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(artefatos);
+    }
+
     @GetMapping
     public ResponseEntity<List<Artefato>> lista() {
         return ResponseEntity.ok(this.artefatoService.obtemTodos());
