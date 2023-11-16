@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+hibernate:
+  connection:
+    url: jdbc:postgresql://${DATABASE_HOST}/guiame-apicruds?sslmode=require
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_HOST}/guiame-apicruds?sslmode=require
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /docs/index.html

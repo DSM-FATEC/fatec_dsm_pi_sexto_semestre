@@ -1,0 +1,21 @@
+server:
+  port: 3000
+
+hibernate:
+  connection:
+    url: jdbc:postgresql://localhost:5432/guiame_cruds
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/guiame_cruds
+    username: guiame_cruds
+    password: guiame_cruds
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+springdoc:
+  swagger-ui:
+    path: /docs/index.html

@@ -1,0 +1,10 @@
+spring:
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST}
+    port: 5672
+    username: ${RABBIT_MQ_USERNAME}
+    password: ${RABBIT_MQ_PASSWORD}
+
+firestore:
+  collection: eventos
+  project: guiame-mobile

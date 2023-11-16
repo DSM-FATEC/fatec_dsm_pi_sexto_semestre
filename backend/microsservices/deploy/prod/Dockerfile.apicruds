@@ -14,4 +14,6 @@ WORKDIR /app
 
 COPY --from=builder /app/apicruds/build/libs/apicruds-0.0.1-SNAPSHOT.jar apicruds.jar
 
-ENTRYPOINT ["java", "-jar", "apicruds.jar"]
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "apicruds.jar"]
