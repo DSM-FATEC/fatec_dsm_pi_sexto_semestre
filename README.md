@@ -1,4 +1,4 @@
-# Guia-me
+# Guia-me V2
 
 <p align="center">
   <img src="https://github.com/DSM-FATEC/fatec_dsm_pi_sexto_semestre/blob/main/docs/imagens/logo.png?raw=true" width="20%">
