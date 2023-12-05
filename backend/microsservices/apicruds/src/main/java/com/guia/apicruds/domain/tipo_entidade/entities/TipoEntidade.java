@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -29,6 +30,7 @@ public class TipoEntidade {
     @Column(nullable = false)
     private Instant atualizadoEm;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tipo")
     private Collection<Entidade> Entidade;
 }

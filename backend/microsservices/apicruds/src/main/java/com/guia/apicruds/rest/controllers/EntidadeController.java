@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/entidades")
+@RequestMapping("/api/entidade")
 public class EntidadeController {
 
     private EntidadeService entidadeService;
@@ -21,7 +21,7 @@ public class EntidadeController {
         this.entidadeService = entidadeService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Entidade> listar() {
         return entidadeService.listar();
     }
@@ -31,7 +31,7 @@ public class EntidadeController {
         return entidadeService.buscarPorId(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Entidade> criar(@RequestBody EntidadeInputModel inputModel) {
         Entidade entidadeCriada = entidadeService.criarEntidade(inputModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(entidadeCriada);

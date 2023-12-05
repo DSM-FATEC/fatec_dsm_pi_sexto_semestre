@@ -12,7 +12,7 @@ import com.guia.apicruds.services.TipoEntidadeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tipos_entidades")
+@RequestMapping("/api/tipo_entidade")
 public class TipoEntidadeController {
     private TipoEntidadeService tipoEntidadeService;
 
@@ -21,7 +21,7 @@ public class TipoEntidadeController {
         this.tipoEntidadeService = tipoEntidadeService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<TipoEntidade> listar() {
         return tipoEntidadeService.listar();
     }
@@ -31,12 +31,12 @@ public class TipoEntidadeController {
         return tipoEntidadeService.buscarPorId(id);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<TipoEntidade> criar(@RequestBody TipoEntidadeInputModel inputModel) {
         TipoEntidade tipoEntidadeCriada = tipoEntidadeService.criarTipoEntidade(inputModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(tipoEntidadeCriada);
     }
-    
+
     @PutMapping("/{id}")
     public ResponseEntity<TipoEntidade> atualizarEntidade(@PathVariable Long id, @RequestBody TipoEntidadeInputModel inputModel) {
         TipoEntidade tipoEntidadeAtualizada = tipoEntidadeService.atualizarTipoEntidade(id, inputModel);

@@ -29,6 +29,8 @@ public class ArtefatoService {
         artefato.setDescricao(inputModel.getDescricao());
         artefato.setCriadoEm(Instant.now());
         artefato.setAtualizadoEm(Instant.now());
+        artefato.setComportamentos(inputModel.getComportamentos());
+        artefato.setWifi(inputModel.getWifi());
 
         Optional<TipoArtefato> tipoArtefato = this.tipoArtefatoRepository.findById(inputModel.getTipoId());
 
@@ -57,6 +59,8 @@ public class ArtefatoService {
         artefato.get().setDescricao(inputModel.getDescricao());
         artefato.get().setTipo(tipoArtefato.get());
         artefato.get().setAtualizadoEm(Instant.now());
+        artefato.get().setComportamentos(inputModel.getComportamentos());
+        artefato.get().setWifi(inputModel.getWifi());
 
         return this.artefatoRepository.save(artefato.get());
     }

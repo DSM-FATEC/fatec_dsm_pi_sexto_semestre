@@ -16,6 +16,11 @@ spring:
     hibernate:
       ddl-auto: update
 
+  security:
+    user:
+      user: admin
+      password: admin
+
 springdoc:
   swagger-ui:
     path: /docs/index.html

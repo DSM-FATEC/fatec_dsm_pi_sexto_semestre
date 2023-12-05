@@ -8,30 +8,30 @@ from umqtt.simple import MQTTClient
 
 
 # Dados do artefato
-ARTEFATO_ID = 0
+ARTEFATO_ID = 1
 
 # Dados de conexão do wifi
-WIFI_SSID = '<NOME DO WIFI>'
-WIFI_SENHA = '<SENHA DO WIFI>'
+WIFI_SSID = 'WIFI-GUSTAV0'
+WIFI_SENHA = '6034860348'
 
 # Dados do access point
 ACCESS_POINT_SSID = f'guia_me_artefato_{ARTEFATO_ID}'
 ACCESS_POINT_SENHA = '12345678'
 
 # Dados da api
-API_USER='<USUARIO DA API>'
-API_PASSWORD='<SENHA DA API>'
-API_HOST='<URL DA API>'
+API_USER='user'
+API_PASSWORD='5032b1b-ed1b-444c-8a20-a7097dfca922'
+API_HOST='https://guia-me-apicruds-ol5sqokdfa-ue.a.run.app'
 
 # Dados do Node MCU
 # machine.unique_id() -> Obtém o identificador do Arduino
 CLIENT_ID = machine.unique_id()
 
 # Dados tópico MQTT
-MQTT_HOST = b'<HOST MQTT>'
+MQTT_HOST = b'jackal.rmq.cloudamqp.com'
 MQTT_PORT = 1883
-MQTT_USERNAME = b'<USUARIO MQTT>'
-MQTT_PASSWORD = b'<SENHA MQTT>'
+MQTT_USERNAME = b'zxrpgckd:zxrpgckd'
+MQTT_PASSWORD = b'JnLPPDX7SbS7VpWaHvRNf4hg1BBqyA62'
 MQTT_TOPIC_ROUTING_KEY = b'eventos'
 
 

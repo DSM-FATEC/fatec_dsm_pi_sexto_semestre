@@ -4,14 +4,12 @@ import java.time.Instant;
 
 import com.guia.apicruds.domain.tipo_artefato.entities.TipoArtefato;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+
+import java.util.Map;
 
 @Data
 @Entity
@@ -24,6 +22,10 @@ public class Artefato {
     private String wifi;
     private Instant criadoEm;
     private Instant atualizadoEm;
+
+    @Type(JsonType.class)
+    @Column(columnDefinition = "JSONB")
+    private Map<String, Object> comportamentos;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo")

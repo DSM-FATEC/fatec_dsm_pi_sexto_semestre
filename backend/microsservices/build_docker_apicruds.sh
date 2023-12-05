@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x #echo on
 
-VERSAO=1
+VERSAO=1.3
 IMAGEM="guia-me-apicruds:v$VERSAO"
 REGISTRY="southamerica-east1-docker.pkg.dev/guiame-mobile/imagens/$IMAGEM"
 

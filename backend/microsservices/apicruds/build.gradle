@@ -41,6 +41,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 	implementation 'javax.validation:validation-api:2.0.1.Final'
+
+	// https://mvnrepository.com/artifact/io.hypersistence/hypersistence-utils-hibernate-62
+	implementation 'io.hypersistence:hypersistence-utils-hibernate-62:3.6.1'
 }
 
 tasks.named('test') {
