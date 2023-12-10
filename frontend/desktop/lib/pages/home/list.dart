@@ -1,4 +1,4 @@
-import 'package:desktop/features/entidades/presentation/pages/entity_page.dart';
+import 'package:desktop/pages/entity_types/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

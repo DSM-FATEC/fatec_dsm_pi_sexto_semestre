@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:desktop/features/home/presentation/home_page.dart';
+import 'package:desktop/pages/home/list.dart';
 import 'package:desktop/ui/menus.dart';
 import 'package:flutter/material.dart';
 import 'package:desktop_window/desktop_window.dart';
