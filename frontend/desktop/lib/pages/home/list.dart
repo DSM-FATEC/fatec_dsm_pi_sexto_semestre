@@ -1,40 +1,20 @@
+import 'package:desktop/pages/artifact/list.dart';
+import 'package:desktop/pages/artifact_types/list.dart';
+import 'package:desktop/pages/entity/list.dart';
 import 'package:desktop/pages/entity_types/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final indexStateProvider = StateProvider<int>((ref) => 0);
 
-_buildMockPage(String title) {
-  return Expanded(
-    child: Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        actions: [
-          FilledButton(
-            onPressed: () {},
-            child: const Text('Cadastrar'),
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: 100,
-        itemBuilder: (context, index) => ListTile(
-          leading: Text(index.toString()),
-          title: Text('Linha: $index'),
-        ),
-      ),
-    ),
-  );
-}
-
 class HomePage extends ConsumerWidget {
   HomePage({super.key});
 
   final pages = [
     const EntityTypePage(),
-    Container(color: Colors.blue.shade300),
-    Container(color: Colors.purple.shade300),
-    Container(color: Colors.pink.shade300),
+    const EntityPage(),
+    const ArtifactTypePage(),
+    const ArtifactPage(),
   ];
 
   @override
