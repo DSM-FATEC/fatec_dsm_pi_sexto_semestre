@@ -24,6 +24,7 @@
   <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white">
   <img src="https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white"> 
   <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
+  <img src="https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=androidStudio&logoColor=white">
   <img src="https://img.shields.io/badge/SpringBoot-6db23e?style=for-the-badge&logo=springboot&logoColor=white">
 </p>
 
