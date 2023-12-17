@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040186223864",
+    "project_id": "guiame-firestore-poc",
+    "storage_bucket": "guiame-firestore-poc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040186223864:android:811a0b21e4fe9b96b7df0d",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtqYkTdE2M1LTKULj7ppqjsDEx2Xz9zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
