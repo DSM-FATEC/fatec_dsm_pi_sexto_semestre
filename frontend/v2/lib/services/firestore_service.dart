@@ -54,11 +54,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBl1eNrrbYmYXVI3VhxUGe3npSMqJni2pc',
-    appId: '1:822482765454:android:bb8b6c1b2eb78985dbabdf',
-    messagingSenderId: '822482765454',
-    projectId: 'f290-ldm-poc-pi6',
-    storageBucket: 'f290-ldm-poc-pi6.appspot.com',
+    apiKey: 'AIzaSyAOWt-88MzntgxmJA_1ylBqICidvtxLPU0',
+    appId: '1:764721624862:android:6811179d661443c410fb0f',
+    messagingSenderId: '764721624862',
+    projectId: 'guiame-mobile',
+    storageBucket: 'guiame-mobile.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

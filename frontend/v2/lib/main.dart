@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/alerts_screen.dart';
 import 'package:frontend/pages/login/sign_in_page.dart';
 
 void main() {
@@ -13,13 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.light,
-        colorSchemeSeed: Colors.purple
-        // brightness: Brightness.light
-      ),
+          useMaterial3: true,
+          brightness: Brightness.light,
+          colorSchemeSeed: Colors.purple
+          // brightness: Brightness.light
+          ),
       debugShowCheckedModeBanner: false,
-      home: const SignInPage(),
+      home: const AlertsScreenHome(),
     );
   }
 }
