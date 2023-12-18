@@ -1,7 +1,7 @@
 class Evento {
   int? id;
-  Artefato? artefato;
-  Corpo? corpo;
+  ArtefatoOld? artefato;
+  CorpoOld? corpo;
   String? criadoEm;
   String? atualizadoEm;
 
@@ -11,8 +11,8 @@ class Evento {
   Evento.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     artefato =
-        json['artefato'] != null ? Artefato.fromJson(json['artefato']) : null;
-    corpo = json['corpo'] != null ? Corpo.fromJson(json['corpo']) : null;
+        json['artefato'] != null ? ArtefatoOld.fromJson(json['artefato']) : null;
+    corpo = json['corpo'] != null ? CorpoOld.fromJson(json['corpo']) : null;
     criadoEm = json['criado_em'];
     atualizadoEm = json['atualizado_em'];
   }
@@ -32,7 +32,7 @@ class Evento {
   }
 }
 
-class Artefato {
+class ArtefatoOld {
   String? id;
   Tipo? tipo;
   Entidade? entidade;
@@ -42,7 +42,7 @@ class Artefato {
   String? criadoEm;
   String? atualizadoEm;
 
-  Artefato(
+  ArtefatoOld(
       {this.id,
       this.tipo,
       this.entidade,
@@ -52,7 +52,7 @@ class Artefato {
       this.criadoEm,
       this.atualizadoEm});
 
-  Artefato.fromJson(Map<String, dynamic> json) {
+  ArtefatoOld.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     tipo = json['tipo'] != null ? Tipo.fromJson(json['tipo']) : null;
     entidade =
@@ -193,12 +193,12 @@ class Comportamentos {
   }
 }
 
-class Corpo {
+class CorpoOld {
   String? estado;
 
-  Corpo({this.estado});
+  CorpoOld({this.estado});
 
-  Corpo.fromJson(Map<String, dynamic> json) {
+  CorpoOld.fromJson(Map<String, dynamic> json) {
     estado = json['estado'];
   }
 

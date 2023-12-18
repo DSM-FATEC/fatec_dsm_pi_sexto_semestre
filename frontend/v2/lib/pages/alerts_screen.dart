@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/model/alert_event_model.dart';
-import 'package:frontend/services/firestore_service.dart';
+import 'package:frontend/model/artefato_model.dart';
+import 'package:frontend/model/data_model.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 class AlertsScreenHome extends StatefulWidget {
@@ -60,6 +60,7 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
       appBar: AppBar(
         title: const Text("Guia-me V2"),
       ),
+      drawer: const Drawer(),
       body: StreamBuilder(
         stream: _artefactStream,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -86,19 +87,25 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
             itemBuilder: (context, index) {
               var artefact = data[index] as DocumentSnapshot;
               // return Text(artefact.data().toString());
-              final evento =
-                  Evento.fromJson(artefact.data() as Map<String, dynamic>);
+              final dataModel =
+                  DataModel.fromJson(artefact.data() as Map<String, dynamic>);
               return Card(
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundColor: Colors.amber,
                     child: Text(
-                      '${evento.artefato?.id?.substring(1, 4)}',
+                      '${dataModel.artefato?.id?.substring(1, 4)}',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
-                  title: Text('${evento.artefato?.descricao}'),
-                  subtitle: Text('Criado em ${evento.artefato?.criadoEm}'),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('${dataModel.artefato?.descricao}'),
+                      Text('Criado em ${dataModel.artefato?.criadoEm}', style: Theme.of(context).textTheme.labelSmall,),
+                    ],
+                  ),
+                  subtitle: Text('Mensagem: ${dataModel.corpo?.mensagem}'),
                 ),
               );
             },
