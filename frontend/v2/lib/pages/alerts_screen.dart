@@ -47,7 +47,7 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
               "comportamentos": {"a": "b"},
               "criado_em": "2023-03-10T19:34:00Z"
             },
-            "corpo": {"mensagem": "teste"}
+            "corpo": {"estado": "teste"}
           })
           .then((value) => print('Success! ID: ${value.id}'))
           .catchError((error) => print('$error'));
@@ -90,6 +90,9 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
                   Evento.fromJson(artefact.data() as Map<String, dynamic>);
               return Card(
                 child: ListTile(
+                  onTap: () async {
+                    await exibirBottomSheet(context, evento);
+                  },
                   leading: CircleAvatar(
                     backgroundColor: Colors.amber,
                     child: Text(
@@ -110,6 +113,51 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  Future<dynamic> exibirBottomSheet(BuildContext context, Evento evento) {
+    return showModalBottomSheet(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+      context: context,
+      builder: (context) {
+        return Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(32),
+              topRight: Radius.circular(32),
+            ),
+          ),
+          child: Column(
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.amber,
+                  child: Text(
+                    '${evento.artefato?.id?.substring(1, 4)}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                title: Text('${evento.artefato?.descricao}'),
+                subtitle: Text(
+                  '${evento.artefato?.criadoEm}',
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              const Divider(height: 5),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    '${evento.corpo?.estado}',
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
