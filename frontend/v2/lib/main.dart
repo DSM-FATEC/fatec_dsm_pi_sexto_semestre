@@ -20,11 +20,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.light,
-          colorSchemeSeed: Colors.purple
-          // brightness: Brightness.light
+        useMaterial3: false,
+        brightness: Brightness.light,
+        colorScheme: ColorScheme.fromSwatch(
+          accentColor: Colors.amberAccent,
+        ),
+        appBarTheme: const AppBarTheme(
+          color: Color(0xFF4E4B44),
+          iconTheme: IconThemeData(
+            color: Colors.white60,
           ),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: const AlertsScreenHome(),
     );

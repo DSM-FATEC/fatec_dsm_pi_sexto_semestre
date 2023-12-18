@@ -58,7 +58,6 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Guia-me V2"),
       ),
       body: StreamBuilder(
@@ -87,11 +86,16 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
             itemBuilder: (context, index) {
               var artefact = data[index] as DocumentSnapshot;
               // return Text(artefact.data().toString());
-              final evento = Evento.fromJson(artefact.data()as Map<String, dynamic>);
+              final evento =
+                  Evento.fromJson(artefact.data() as Map<String, dynamic>);
               return Card(
                 child: ListTile(
                   leading: CircleAvatar(
-                    child: Text('${evento.artefato?.id?.substring(1,4)}'),
+                    backgroundColor: Colors.amber,
+                    child: Text(
+                      '${evento.artefato?.id?.substring(1, 4)}',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
                   title: Text('${evento.artefato?.descricao}'),
                   subtitle: Text('Criado em ${evento.artefato?.criadoEm}'),
