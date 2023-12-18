@@ -1,11 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:frontend/model/alert_event_model.dart';
-import 'package:frontend/model/artefato_model.dart';
 import 'package:frontend/model/data_model.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:wifi_scan/wifi_scan.dart';
 
 class AlertsScreenHome extends StatefulWidget {
   const AlertsScreenHome({super.key});
@@ -15,7 +15,8 @@ class AlertsScreenHome extends StatefulWidget {
 }
 
 class _AlertsScreenHomeState extends State<AlertsScreenHome> {
-  int _counter = 0;
+  List<WiFiAccessPoint> accessPoints = <WiFiAccessPoint>[];
+  StreamSubscription<List<WiFiAccessPoint>>? subscription;
   late FirebaseFirestore _firestore;
 
   final Stream<QuerySnapshot> _artefactStream =
@@ -30,11 +31,11 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
   @override
   void dispose() {
     super.dispose();
+    _stopListeningToScaanResults();
   }
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
       _firestore
           .collection('artefacts')
           .add({
@@ -54,8 +55,44 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
     });
   }
 
+  Future<bool> _canGetScannedResults(BuildContext context) async {
+    final can =
+        await WiFiScan.instance.canGetScannedResults(askPermissions: true);
+
+    if (can != CanGetScannedResults.yes) {
+      if (mounted) kShowSnackBar(context, 'Cannot get scanned results: $can');
+      accessPoints = <WiFiAccessPoint>[];
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> _startListeningToScanResults(BuildContext context) async {
+    if (await _canGetScannedResults(context)) {
+      subscription =
+          WiFiScan.instance.onScannedResultsAvailable.listen((event) {
+        setState(() {
+          //TODO: Verificar o uso de todas as redes ao inves da unica com maior intensidade de sianl
+          var maxStrenght = event.reduce((atual, proximo) =>
+              atual.level > proximo.level ? atual : proximo);
+          accessPoints = <WiFiAccessPoint>[maxStrenght];
+          print('STREAM: ${accessPoints[0].ssid}');
+        });
+      });
+    }
+  }
+
+  void _stopListeningToScaanResults() {
+    subscription?.cancel();
+    setState(() {
+      subscription = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    _startListeningToScanResults(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Guia-me V2"),
@@ -102,7 +139,10 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('${dataModel.artefato?.descricao}'),
-                      Text('Criado em ${dataModel.artefato?.criadoEm}', style: Theme.of(context).textTheme.labelSmall,),
+                      Text(
+                        'Criado em ${dataModel.artefato?.criadoEm}',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
                     ],
                   ),
                   subtitle: Text('Mensagem: ${dataModel.corpo?.mensagem}'),
@@ -119,4 +159,10 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
       ),
     );
   }
+}
+
+void kShowSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(SnackBar(content: Text(message)));
 }

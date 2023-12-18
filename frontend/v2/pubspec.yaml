@@ -44,6 +44,7 @@ dependencies:
   firebase_core: ^2.22.0
   loading_indicator: ^3.1.1
   json_annotation: ^4.8.1
+  wifi_scan: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
