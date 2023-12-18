@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/model/alert_event_model.dart';
 import 'package:frontend/services/firestore_service.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class AlertsScreenHome extends StatefulWidget {
   const AlertsScreenHome({super.key});
@@ -57,7 +59,7 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Guia-me V2"),
+        title: const Text("Guia-me V2"),
       ),
       body: StreamBuilder(
         stream: _artefactStream,
@@ -67,7 +69,15 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+            return const Center(
+              child: SizedBox(
+                width: 200,
+                height: 200,
+                child: LoadingIndicator(
+                  indicatorType: Indicator.ballPulse,
+                ),
+              ),
+            );
           }
 
           var data = snapshot.data.docs;
@@ -76,7 +86,17 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
             itemCount: data.length,
             itemBuilder: (context, index) {
               var artefact = data[index] as DocumentSnapshot;
-              return Text(artefact.data().toString());
+              // return Text(artefact.data().toString());
+              final evento = Evento.fromJson(artefact.data()as Map<String, dynamic>);
+              return Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    child: Text('${evento.artefato?.id?.substring(1,4)}'),
+                  ),
+                  title: Text('${evento.artefato?.descricao}'),
+                  subtitle: Text('Criado em ${evento.artefato?.criadoEm}'),
+                ),
+              );
             },
           );
         },

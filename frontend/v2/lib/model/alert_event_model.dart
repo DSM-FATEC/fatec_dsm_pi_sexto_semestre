@@ -33,7 +33,7 @@ class Evento {
 }
 
 class Artefato {
-  int? id;
+  String? id;
   Tipo? tipo;
   Entidade? entidade;
   String? descricao;
