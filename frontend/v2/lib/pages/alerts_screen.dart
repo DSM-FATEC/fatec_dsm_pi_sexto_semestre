@@ -129,7 +129,7 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
               return Card(
                 child: ListTile(
                   onTap: () async {
-                    await exibirBottomSheet(context, evento);
+                    await exibirBottomSheet(context, dataModel);
                   },
                   leading: CircleAvatar(
                     backgroundColor: Colors.amber,
@@ -163,7 +163,7 @@ class _AlertsScreenHomeState extends State<AlertsScreenHome> {
     );
   }
 
-  Future<dynamic> exibirBottomSheet(BuildContext context, Evento evento) {
+  Future<dynamic> exibirBottomSheet(BuildContext context, DataModel dataModel) {
     return showModalBottomSheet(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
       context: context,
